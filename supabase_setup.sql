@@ -74,6 +74,18 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
 
+create or replace function public.is_admin()
+returns boolean
+language sql
+security definer set search_path = public
+stable
+as $$
+  select exists (
+    select 1 from public.profiles
+    where id = auth.uid() and role = 'admin'
+  );
+$$;
+
 alter table public.profiles enable row level security;
 
 drop policy if exists "Public profiles are viewable by everyone." on public.profiles;
@@ -92,13 +104,7 @@ using ( auth.uid() = id );
 
 create policy "Admins can view all profiles"
 on public.profiles for select
-using (
-  exists (
-    select 1 from public.profiles
-    where profiles.id = auth.uid()
-    and profiles.role = 'admin'
-  )
-);
+using ( public.is_admin() );
 
 create policy "Users can insert their own profile"
 on public.profiles for insert
@@ -158,13 +164,7 @@ using ( auth.uid() = user_id );
 
 create policy "Admins can view all applications"
 on public.applications for select
-using (
-  exists (
-    select 1 from public.profiles
-    where profiles.id = auth.uid()
-    and profiles.role = 'admin'
-  )
-);
+using ( public.is_admin() );
 
 create policy "Service role full access applications"
 on public.applications for all
@@ -217,23 +217,11 @@ with check ( auth.uid() = user_id );
 
 create policy "Admins can view all documents"
 on public.documents for select
-using (
-  exists (
-    select 1 from public.profiles
-    where profiles.id = auth.uid()
-    and profiles.role = 'admin'
-  )
-);
+using ( public.is_admin() );
 
 create policy "Admins can update all documents"
 on public.documents for update
-using (
-  exists (
-    select 1 from public.profiles
-    where profiles.id = auth.uid()
-    and profiles.role = 'admin'
-  )
-);
+using ( public.is_admin() );
 
 create policy "Service role full access documents"
 on public.documents for all
