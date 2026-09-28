@@ -4,6 +4,12 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 
+declare global {
+  interface Window {
+    dataLayer?: Array<Record<string, unknown>>;
+  }
+}
+
 const css = `
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -1127,17 +1133,45 @@ export default function Home() {
     setMobileMenuOpen(false);
   };
 
-  const submitForm = (e: React.FormEvent) => {
+  const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const btn = document.getElementById('submitBtn') as HTMLButtonElement | null;
     if (!btn) return;
+    const originalMarkup = btn.innerHTML;
     btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="animation:spin .8s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> ${t.contact.form.sending}`;
     btn.disabled = true;
-    window.setTimeout(() => {
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          country: formData.get('country'),
+          message: formData.get('message'),
+          url: window.location.href,
+        }),
+      });
+      const result = await response.json();
+
+      if (!response.ok || !result.ok) throw new Error('Contact request failed');
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'generate_lead', lead_form: 'contact_form' });
+
       btn.innerHTML = `✓ ${t.contact.form.sent}`;
       btn.style.background = '#16a34a';
       btn.style.boxShadow = '0 8px 24px rgba(22,163,74,0.35)';
-    }, 1400);
+      e.currentTarget.reset();
+    } catch (error) {
+      console.error('Contact request failed', error);
+      btn.innerHTML = originalMarkup;
+      btn.disabled = false;
+    }
   };
 
   return (
@@ -1930,25 +1964,25 @@ export default function Home() {
               <form className="cform" id="cform" onSubmit={submitForm}>
                 <div className="field">
                   <label>{t.contact.form.name}</label>
-                  <input type="text" placeholder={t.contact.form.namePlaceholder} required />
+                  <input name="name" type="text" placeholder={t.contact.form.namePlaceholder} required />
                 </div>
                 <div className="field-row">
                   <div className="field">
                     <label>{t.contact.form.email}</label>
-                    <input type="email" placeholder={t.contact.form.emailPlaceholder} required />
+                    <input name="email" type="email" placeholder={t.contact.form.emailPlaceholder} required />
                   </div>
                   <div className="field">
                     <label>{t.contact.form.phone}</label>
-                    <input type="tel" placeholder={t.contact.form.phonePlaceholder} />
+                    <input name="phone" type="tel" placeholder={t.contact.form.phonePlaceholder} />
                   </div>
                 </div>
                 <div className="field">
                   <label>{t.contact.form.country}</label>
-                  <input type="text" placeholder={t.contact.form.countryPlaceholder} />
+                  <input name="country" type="text" placeholder={t.contact.form.countryPlaceholder} />
                 </div>
                 <div className="field">
                   <label>{t.contact.form.message}</label>
-                  <textarea placeholder={t.contact.form.messagePlaceholder} />
+                  <textarea name="message" placeholder={t.contact.form.messagePlaceholder} />
                 </div>
                 <button type="submit" className="submit-btn" id="submitBtn">
                   {t.contact.form.submit}
