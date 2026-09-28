@@ -1135,13 +1135,14 @@ export default function Home() {
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
     const btn = document.getElementById('submitBtn') as HTMLButtonElement | null;
     if (!btn) return;
     const originalMarkup = btn.innerHTML;
     btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="animation:spin .8s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> ${t.contact.form.sending}`;
     btn.disabled = true;
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
 
     try {
       const response = await fetch('/api/contact', {
@@ -1166,7 +1167,7 @@ export default function Home() {
       btn.innerHTML = `✓ ${t.contact.form.sent}`;
       btn.style.background = '#16a34a';
       btn.style.boxShadow = '0 8px 24px rgba(22,163,74,0.35)';
-      e.currentTarget.reset();
+      form.reset();
     } catch (error) {
       console.error('Contact request failed', error);
       btn.innerHTML = originalMarkup;
