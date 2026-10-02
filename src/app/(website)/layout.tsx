@@ -14,29 +14,29 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://inlaw.kz'),
+  metadataBase: new URL('https://inlaw.consulting'),
   title: {
-    default: "Inlaw.kz — Регистрация и Сопровождение Международного Бизнеса",
-    template: "%s | Inlaw.kz",
+    default: "INLAW — Юридическое и корпоративное сопровождение международного бизнеса",
+    template: "%s | INLAW",
   },
-  description: "Регистрация компаний, открытие счетов и лицензирование в Казахстане, ОАЭ, МФЦА и Гонконге. Полное юридическое и корпоративное сопровождение.",
-  keywords: ["регистрация компании", "МФЦА", "ОАЭ", "Дубай", "открытие счета", "лицензия", "AIFC", "business setup", "Kazakhstan", "UAE"],
+  description: "Частные юридические и корпоративные консультации для международного бизнеса: структурирование, сопровождение регистрации компаний, банковских и лицензионных процессов.",
+  keywords: ["юридическое сопровождение", "корпоративное сопровождение", "МФЦА", "ОАЭ", "Дубай", "AIFC", "business consulting", "Kazakhstan", "UAE"],
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
-    url: 'https://inlaw.kz',
-    siteName: 'Inlaw.kz',
+    url: 'https://inlaw.consulting',
+    siteName: 'INLAW',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Inlaw.kz',
+        alt: 'INLAW',
       },
     ],
   },
   alternates: {
-    canonical: 'https://inlaw.kz',
+    canonical: 'https://inlaw.consulting',
   },
   robots: {
     index: true,
@@ -51,11 +51,11 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LegalService",
-  "name": "Inlaw.kz",
+  "name": "INLAW",
   "alternateName": "Inlaw",
-  "url": "https://inlaw.kz",
-  "logo": "https://inlaw.kz/logo.png",
-  "description": "Регистрация и Сопровождение Международного Бизнеса в Казахстане, ОАЭ, Кыргызстане и Шанхае",
+  "url": "https://inlaw.consulting",
+  "logo": "https://inlaw.consulting/logo.png",
+  "description": "Частные юридические и корпоративные консультации и сопровождение международного бизнеса.",
   "address": [
     {
       "@type": "PostalAddress",

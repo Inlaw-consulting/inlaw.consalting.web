@@ -56,6 +56,7 @@ export default function Footer() {
                   <span className="font-bold text-slate-900 text-sm mb-1">{t.footer.legal.name}</span>
                   <span>{t.footer.legal.bin}</span>
                   <span>{t.footer.legal.license}</span>
+                  <span className="max-w-2xl pt-2 leading-relaxed">{t.footer.legal.disclaimer}</span>
                 </>
              )}
           </div>

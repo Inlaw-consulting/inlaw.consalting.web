@@ -334,7 +334,8 @@ export const translations = {
         legal: {
           name: 'Inlaw.kz',
           bin: 'Business ID: 200840900057',
-          license: 'AIFC License: AFSA-A-LA-2020-0030 dated 13.08.2020'
+          license: 'AIFC License: AFSA-A-LA-2020-0030 dated 13.08.2020',
+          disclaimer: 'INLAW is a private legal and corporate consulting firm. We are not a government authority or regulator and do not independently issue registrations, licences, or other official documents. Decisions are made solely by the competent authorities.'
         },
         privacyPolicy: 'Privacy Policy'
       },
@@ -1430,7 +1431,8 @@ export const translations = {
         legal: {
           name: 'Inlaw.kz',
           bin: 'БИН: 200840900057',
-          license: 'Лицензия МФЦА: AFSA-A-LA-2020-0030 от 13.08.2020'
+          license: 'Лицензия МФЦА: AFSA-A-LA-2020-0030 от 13.08.2020',
+          disclaimer: 'INLAW — частная компания, оказывающая юридические и корпоративные консультации. Мы не являемся государственным органом или регулятором и самостоятельно не выдаём регистрации, лицензии и другие официальные документы. Решения принимаются только уполномоченными органами.'
         },
         privacyPolicy: 'Политика конфиденциальности'
       }
@@ -2147,7 +2149,8 @@ export const translations = {
         legal: {
           name: 'Inlaw.kz',
           bin: '商业识别码: 200840900057',
-          license: 'AIFC 牌照: AFSA-A-LA-2020-0030 日期 13.08.2020'
+          license: 'AIFC 牌照: AFSA-A-LA-2020-0030 日期 13.08.2020',
+          disclaimer: 'INLAW 是提供法律和企业咨询服务的私营公司。我们不是政府机构或监管机构，不能独立签发注册、许可证或其他官方文件。相关决定仅由主管机构作出。'
         },
         privacyPolicy: '隐私政策'
       }

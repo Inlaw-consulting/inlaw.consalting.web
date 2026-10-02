@@ -444,6 +444,7 @@ footer{background:#fff;border-top:1px solid #e2e8f0;padding:72px 0 36px;}
 .foot-bot{border-top:1px solid #f1f5f9;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
 .foot-legal{font-size:12px;color:#64748b;}
 .foot-legal b{color:#0f172a;display:block;font-size:13px;margin-bottom:2px;}
+.foot-disclaimer{display:block;max-width:760px;margin-top:8px;line-height:1.55;}
 .foot-copy{font-size:12px;color:#94a3b8;text-align:right;}
 .foot-privacy{
   display:inline-block;
@@ -2051,6 +2052,7 @@ export default function Home() {
             <div className="foot-legal">
               <b>{t.footer.legal.name}</b>
               {t.footer.legal.bin} &nbsp;·&nbsp; {t.footer.legal.license}
+              <span className="foot-disclaimer">{t.footer.legal.disclaimer}</span>
             </div>
             <div className="foot-copy">
               {t.footer.copy}
