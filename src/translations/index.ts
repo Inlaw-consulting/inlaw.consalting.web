@@ -293,7 +293,7 @@ export const translations = {
         badge: "Let's talk",
         title: "Let's discuss your project",
         titleLines: ["Let's discuss", 'your project'],
-        subtitle: 'Call or message us on WhatsApp — we will propose the optimal structure, jurisdiction, and estimated budget for your business.',
+        subtitle: 'Leave a request — we will propose the optimal structure, jurisdiction, and estimated budget for your business.',
         info: {
           responseTimeLabel: 'Response time',
           responseTimeValue: 'within 24 hours',
@@ -306,7 +306,7 @@ export const translations = {
         },
         actions: {
           title: 'How would you like to contact us?',
-          text: 'Call us or message us on WhatsApp — we will propose the optimal structure, jurisdiction, and estimated budget for your business.',
+          text: 'Call us or send your request on WhatsApp — the details from the form will be added to the message automatically.',
           call: 'Call',
           whatsapp: 'Message on WhatsApp',
         },
@@ -1017,7 +1017,7 @@ export const translations = {
         badge: 'Давайте обсудим',
         title: 'Обсудим ваш проект',
         titleLines: ['Давайте обсудим', 'ваш проект'],
-        subtitle: 'Позвоните или напишите в WhatsApp — мы предложим оптимальную структуру, юрисдикцию и расчет бюджета для вашего бизнеса.',
+        subtitle: 'Оставьте заявку — мы предложим оптимальную структуру, юрисдикцию и расчет бюджета для вашего бизнеса.',
         info: {
           responseTimeLabel: 'Срок ответа',
           responseTimeValue: 'в течение 24 часов',
@@ -1030,7 +1030,7 @@ export const translations = {
         },
         actions: {
           title: 'Как вам удобнее связаться?',
-          text: 'Позвоните нам или напишите в WhatsApp — предложим оптимальную структуру, юрисдикцию и примерный бюджет для вашего бизнеса.',
+          text: 'Позвоните нам или отправьте заявку в WhatsApp — данные из формы подставятся в сообщение автоматически.',
           call: 'Позвонить',
           whatsapp: 'Написать в WhatsApp',
         },
@@ -1741,7 +1741,7 @@ export const translations = {
       badge: '联系我们',
       title: '让我们讨论您的项目',
       titleLines: ['让我们讨论', '您的项目'],
-      subtitle: '致电或通过 WhatsApp 联系我们 — 我们将为您的业务提出最佳结构、司法管辖区和预算估算。',
+      subtitle: '留下请求 — 我们将为您的业务提出最佳结构、司法管辖区和预算估算。',
       info: {
         responseTimeLabel: '回复时间',
         responseTimeValue: '24 小时内',
@@ -1754,7 +1754,7 @@ export const translations = {
       },
       actions: {
         title: '您希望如何联系我们？',
-        text: '致电或通过 WhatsApp 联系我们 — 我们将为您的业务提出最佳结构、司法管辖区和预算估算。',
+        text: '致电我们或通过 WhatsApp 发送请求 — 表单中的信息将自动填入消息。',
         call: '拨打电话',
         whatsapp: 'WhatsApp 联系',
       },
