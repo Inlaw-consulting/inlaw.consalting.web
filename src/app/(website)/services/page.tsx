@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import { WHATSAPP_URL, trackWhatsAppClick } from '@/lib/whatsapp';
 
 export default function ServicesPage() {
   const { t } = useLanguage();
@@ -144,15 +144,16 @@ export default function ServicesPage() {
                   {t.servicesPage.cta.subtitle}
                 </p>
               </div>
-              <Link 
-                href="/#contact" 
+              <a 
+                href={WHATSAPP_URL}
+                target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppClick}
                 className="inline-flex flex-shrink-0 items-center justify-center px-8 py-4 text-lg font-bold text-indigo-900 bg-white rounded-xl hover:bg-blue-50 transition-all shadow-lg transform hover:-translate-y-1"
               >
                 {t.servicesPage.cta.button}
                 <svg className="w-5 h-5 ml-2 -mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </Link>
+              </a>
             </div>
             {/* Background decoration */}
             <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl"></div>

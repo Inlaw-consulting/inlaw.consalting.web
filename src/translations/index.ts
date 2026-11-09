@@ -293,7 +293,7 @@ export const translations = {
         badge: "Let's talk",
         title: "Let's discuss your project",
         titleLines: ["Let's discuss", 'your project'],
-        subtitle: 'Leave a request — we will propose the optimal structure, jurisdiction, and estimated budget for your business.',
+        subtitle: 'Message us on WhatsApp — we will propose the optimal structure, jurisdiction, and estimated budget for your business.',
         info: {
           responseTimeLabel: 'Response time',
           responseTimeValue: 'within 24 hours',
@@ -305,6 +305,8 @@ export const translations = {
           initialConsultationValue: 'Free',
         },
         actions: {
+          title: 'Get a consultation on WhatsApp',
+          text: 'Tap the button — a chat with our consultant will open right away.',
           whatsapp: 'Message on WhatsApp',
         },
         form: {
@@ -1014,7 +1016,7 @@ export const translations = {
         badge: 'Давайте обсудим',
         title: 'Обсудим ваш проект',
         titleLines: ['Давайте обсудим', 'ваш проект'],
-        subtitle: 'Оставьте заявку — мы предложим оптимальную структуру, юрисдикцию и расчет бюджета для вашего бизнеса.',
+        subtitle: 'Напишите нам в WhatsApp — мы предложим оптимальную структуру, юрисдикцию и расчет бюджета для вашего бизнеса.',
         info: {
           responseTimeLabel: 'Срок ответа',
           responseTimeValue: 'в течение 24 часов',
@@ -1026,6 +1028,8 @@ export const translations = {
           initialConsultationValue: 'Бесплатно',
         },
         actions: {
+          title: 'Консультация в WhatsApp',
+          text: 'Нажмите кнопку — сразу откроется чат с нашим консультантом.',
           whatsapp: 'Написать в WhatsApp',
         },
         form: {
@@ -1735,7 +1739,7 @@ export const translations = {
       badge: '联系我们',
       title: '让我们讨论您的项目',
       titleLines: ['让我们讨论', '您的项目'],
-      subtitle: '留下请求 — 我们将为您的业务提出最佳结构、司法管辖区和预算估算。',
+      subtitle: '通过 WhatsApp 联系我们 — 我们将为您的业务提出最佳结构、司法管辖区和预算估算。',
       info: {
         responseTimeLabel: '回复时间',
         responseTimeValue: '24 小时内',
@@ -1747,6 +1751,8 @@ export const translations = {
         initialConsultationValue: '免费',
       },
       actions: {
+        title: '通过 WhatsApp 咨询',
+        text: '点击按钮，即可直接与我们的顾问聊天。',
         whatsapp: 'WhatsApp 联系',
       },
       form: {

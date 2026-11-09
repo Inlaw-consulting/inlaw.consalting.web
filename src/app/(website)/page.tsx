@@ -3,14 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
-
-declare global {
-  interface Window {
-    dataLayer?: Array<Record<string, unknown>>;
-  }
-}
-
-const CONTACT_PHONE = '+77001466646';
+import { WHATSAPP_PHONE, WHATSAPP_URL, trackWhatsAppClick } from '@/lib/whatsapp';
 
 const css = `
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -436,6 +429,9 @@ section{padding:100px 0;}
 }
 .submit-btn:hover{background:#1e2f57;box-shadow:0 16px 40px rgba(46,68,122,0.45);transform:translateY(-2px);}
 .submit-btn{text-decoration:none;}
+.cwa-title{font-size:22px;font-weight:800;color:#0f172a;margin-bottom:8px;}
+.cwa-text{font-size:15px;color:#64748b;line-height:1.6;margin-bottom:22px;}
+.cwa-phone{text-align:center;margin-top:16px;font-size:14px;font-weight:700;color:#64748b;letter-spacing:.04em;}
 .wa-btn{background:#25D366;box-shadow:0 8px 24px rgba(37,211,102,0.35);}
 .wa-btn:hover{background:#1ebe5a;box-shadow:0 16px 40px rgba(37,211,102,0.45);}
 
@@ -1139,29 +1135,6 @@ export default function Home() {
     setMobileMenuOpen(false);
   };
 
-  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const f = t.contact.form;
-    const lines = [
-      [f.name, data.get('name')],
-      [f.email, data.get('email')],
-      [f.phone, data.get('phone')],
-      [f.country, data.get('country')],
-      [f.message, data.get('message')],
-    ]
-      .filter(([, v]) => typeof v === 'string' && v.trim())
-      .map(([k, v]) => `${k}: ${String(v).trim()}`);
-    const url = `https://wa.me/${CONTACT_PHONE.replace('+', '')}?text=${encodeURIComponent(lines.join('\n'))}`;
-
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'generate_lead', lead_form: 'contact_form', lead_method: 'whatsapp' });
-
-    const win = window.open(url, '_blank');
-    if (win) win.opener = null;
-    else window.location.href = url;
-  };
-
   return (
     <>
       <link
@@ -1211,7 +1184,7 @@ export default function Home() {
                 CHI
               </button>
             </div>
-            <a href="#contact" onClick={(e) => go(e, 'contact')} className="btn-nav">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppClick} className="btn-nav">
               {t.hero.getConsultation}
             </a>
           </div>
@@ -1250,7 +1223,7 @@ export default function Home() {
               <button className={`lang-btn ${lang === 'RU' ? 'active' : ''}`} onClick={() => mobileApplyLang('RU')}>RU</button>
               <button className={`lang-btn ${lang === 'CHI' ? 'active' : ''}`} onClick={() => mobileApplyLang('CHI')}>CHI</button>
             </div>
-            <a href="#contact" onClick={(e) => go(e, 'contact')} className="mobile-cta">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={() => { setMobileMenuOpen(false); trackWhatsAppClick(); }} className="mobile-cta">
               {t.hero.getConsultation}
             </a>
           </div>
@@ -1304,7 +1277,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hero-ctas">
-              <a href="#contact" onClick={(e) => go(e, 'contact')} className="btn-hero-primary">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppClick} className="btn-hero-primary">
                 {t.hero.getConsultation}
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M5 12h14M13 5l7 7-7 7" />
@@ -1949,36 +1922,17 @@ export default function Home() {
               </div>
             </div>
             <div className="rr">
-              <form className="cform" id="cform" onSubmit={submitForm}>
-                <div className="field">
-                  <label>{t.contact.form.name}</label>
-                  <input name="name" type="text" placeholder={t.contact.form.namePlaceholder} required />
-                </div>
-                <div className="field-row">
-                  <div className="field">
-                    <label>{t.contact.form.email}</label>
-                    <input name="email" type="email" placeholder={t.contact.form.emailPlaceholder} required />
-                  </div>
-                  <div className="field">
-                    <label>{t.contact.form.phone}</label>
-                    <input name="phone" type="tel" placeholder={t.contact.form.phonePlaceholder} />
-                  </div>
-                </div>
-                <div className="field">
-                  <label>{t.contact.form.country}</label>
-                  <input name="country" type="text" placeholder={t.contact.form.countryPlaceholder} />
-                </div>
-                <div className="field">
-                  <label>{t.contact.form.message}</label>
-                  <textarea name="message" placeholder={t.contact.form.messagePlaceholder} />
-                </div>
-                <button type="submit" className="submit-btn wa-btn" id="submitBtn">
+              <div className="cform cwa">
+                <p className="cwa-title">{t.contact.actions.title}</p>
+                <p className="cwa-text">{t.contact.actions.text}</p>
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppClick} className="submit-btn wa-btn">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.45 9.45 0 0 1-4.82-1.32l-.35-.21-3.58.94.96-3.49-.23-.36a9.43 9.43 0 0 1-1.45-5.04c0-5.22 4.25-9.46 9.48-9.46 2.53 0 4.9.99 6.69 2.78a9.4 9.4 0 0 1 2.77 6.69c0 5.22-4.25 9.47-9.46 9.47zm8.05-17.52A11.3 11.3 0 0 0 12.05.65C5.78.65.67 5.75.67 12.02c0 2 .52 3.96 1.52 5.69L.57 23.6l6.04-1.58a11.36 11.36 0 0 0 5.44 1.39h.01c6.27 0 11.38-5.1 11.38-11.37 0-3.04-1.18-5.9-3.34-8.05z" />
                   </svg>
                   {t.contact.actions.whatsapp}
-                </button>
-              </form>
+                </a>
+                <p className="cwa-phone">{WHATSAPP_PHONE}</p>
+              </div>
             </div>
           </div>
         </div>

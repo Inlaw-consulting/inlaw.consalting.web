@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { Language } from '@/translations';
+import { WHATSAPP_URL, trackWhatsAppClick } from '@/lib/whatsapp';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -171,13 +172,13 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            <Link
-              href="/#contact"
-              onClick={(e) => handleNavClick(e, '/#contact')}
+            <a
+              href={WHATSAPP_URL}
+              target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppClick}
               className="px-6 py-2.5 text-sm font-semibold text-white bg-[#2E447A] rounded-lg hover:bg-[#2E447A]/90 transition-all duration-300 shadow-lg shadow-[#2E447A]/20 hover:shadow-xl hover:-translate-y-0.5 active:scale-95"
             >
               {t.header.contact}
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -252,13 +253,13 @@ export default function Header() {
                   ))}
                 </div>
                 
-                <Link
-                  href="/#contact"
-                  onClick={(e) => handleNavClick(e, '/#contact')}
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppClick}
                   className="w-full py-4 text-center text-lg font-bold text-white bg-[#2E447A] rounded-lg hover:bg-[#2E447A]/90 transition-all shadow-lg shadow-[#2E447A]/20"
                 >
                   {t.header.contact}
-                </Link>
+                </a>
               </div>
             </motion.div>
           </motion.div>

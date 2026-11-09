@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import { WHATSAPP_URL, trackWhatsAppClick } from '@/lib/whatsapp';
 
 export default function FintechLaunchPage() {
   const { t } = useLanguage();
@@ -70,12 +71,13 @@ export default function FintechLaunchPage() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link 
-                href="/#contact"
+              <a 
+                href={WHATSAPP_URL}
+                target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppClick}
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-indigo-900 bg-white rounded-xl hover:bg-blue-50 transition-all shadow-lg transform hover:-translate-y-1"
               >
                 {common.getConsultation}
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -362,12 +364,13 @@ export default function FintechLaunchPage() {
             <p className="text-xl text-slate-600 mb-10 leading-relaxed">
               {fintech.cta?.subtitle}
             </p>
-            <Link 
-              href="/#contact"
+            <a 
+              href={WHATSAPP_URL}
+              target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppClick}
               className="inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-[#2E447A] rounded-xl hover:bg-blue-900 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
             >
               {fintech.cta?.button}
-            </Link>
+            </a>
           </motion.div>
         </div>
       </section>
