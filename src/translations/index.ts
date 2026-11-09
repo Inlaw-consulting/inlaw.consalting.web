@@ -305,9 +305,6 @@ export const translations = {
           initialConsultationValue: 'Free',
         },
         actions: {
-          title: 'How would you like to contact us?',
-          text: 'Call us or send your request on WhatsApp — the details from the form will be added to the message automatically.',
-          call: 'Call',
           whatsapp: 'Message on WhatsApp',
         },
         form: {
@@ -1029,9 +1026,6 @@ export const translations = {
           initialConsultationValue: 'Бесплатно',
         },
         actions: {
-          title: 'Как вам удобнее связаться?',
-          text: 'Позвоните нам или отправьте заявку в WhatsApp — данные из формы подставятся в сообщение автоматически.',
-          call: 'Позвонить',
           whatsapp: 'Написать в WhatsApp',
         },
         form: {
@@ -1753,9 +1747,6 @@ export const translations = {
         initialConsultationValue: '免费',
       },
       actions: {
-        title: '您希望如何联系我们？',
-        text: '致电我们或通过 WhatsApp 发送请求 — 表单中的信息将自动填入消息。',
-        call: '拨打电话',
         whatsapp: 'WhatsApp 联系',
       },
       form: {
